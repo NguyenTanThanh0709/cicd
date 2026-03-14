@@ -21,8 +21,6 @@ pipeline {
             steps {
                 sh 'java -version'
                 sh 'mvn -version'
-            }
-            steps {
                 sh 'mvn clean test'  // chạy luôn unit test
                 sh 'mvn package'     // build jar
             }
