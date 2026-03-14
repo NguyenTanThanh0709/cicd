@@ -5,30 +5,22 @@ pipeline {
     }
 
     stages {
-
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/NguyenTanThanh0709/cicd.git'
-            }
-        }
-
         stage('Build & Test') {
             agent {
                 docker {
                     image 'maven:3.9.13-eclipse-temurin-17'
-                    args "-v ${env.WORKSPACE}:/app"
+                    args "" // Không mount workspace từ host
                 }
             }
             steps {
+                // Clone repo trực tiếp trong container
+                sh 'git clone -b main https://github.com/NguyenTanThanh0709/cicd.git /app'
                 dir('/app') {
                     sh 'java -version'
                     sh 'mvn -version'
-                    sh 'mvn clean package'  // build + test
+                    sh 'mvn clean package' // build + test
                 }
             }
-
-
         }
-
     }
 }
