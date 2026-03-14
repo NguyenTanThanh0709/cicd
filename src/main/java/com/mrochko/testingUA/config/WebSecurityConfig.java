@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@Profile("production")
+@Profile({"dev", "stg"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
