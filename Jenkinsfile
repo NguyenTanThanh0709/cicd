@@ -15,14 +15,14 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.9.13-eclipse-temurin-17'
-                    // args '-v /root/.m2:/root/.m2'
+                    args '-v /root/.m2:/root/.m2'
                 }
             }
             steps {
                 sh 'java -version'
                 sh 'mvn -version'
-                sh 'mvn clean test'  // chạy luôn unit test
-                sh 'mvn package'     // build jar
+                sh 'mvn clean package -DskipTests'  // chạy luôn unit test
+                sh 'mvn test'
             }
         }
 
