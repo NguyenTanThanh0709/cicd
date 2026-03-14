@@ -19,7 +19,7 @@ services:
     container_name: testing-spring-boot-app
     restart: always
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       SPRING_PROFILES_ACTIVE: stg
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/testingUA
@@ -33,7 +33,7 @@ services:
     container_name: jenkins
     restart: always
     ports:
-      - "8081:8080"
+      - "8080:8080"
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
