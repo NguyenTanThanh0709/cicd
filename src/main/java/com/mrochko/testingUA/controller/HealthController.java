@@ -20,6 +20,6 @@ public class HealthController {
     @GetMapping("/health")
     public ResponseEntity<Map<String, String>> healthCheck() {
         log.info("Health check requested");
-        return ResponseEntity.status(HttpStatus.OK).body(Map.of("status", "UP1"));
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of("status", "UP1 cicd"));
     }
 }

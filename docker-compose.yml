@@ -15,31 +15,16 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   app:
-    image: nguyentanthanh0709/testing-spring-boot-app:1.0
+    image: nguyentanthanh0709/testing-spring-boot-app:latest
     container_name: testing-spring-boot-app
     restart: always
     ports:
-      - "8081:8081"
+      - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: stg
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/testingUA
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-    depends_on:
-      - postgres-db
-
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
-    restart: always
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    volumes:
-      - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      JAVA_OPTS: -Djenkins.install.runSetupWizard=false
     depends_on:
       - postgres-db
 
